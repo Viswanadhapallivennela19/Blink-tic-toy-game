@@ -96,8 +96,9 @@ img{
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 90dvh;
+  height: 100dvh;
   margin: auto;
+  overflow: hidden;
 }
 
 .main {
@@ -153,7 +154,7 @@ select {
   min-height: 30px;
 }
 .highlight {
-  background:rgba(255, 217, 0, 0.89); /* light green or any color you prefer */
+  background:rgba(255, 217, 0, 0.89);
   transition: background-color 0.5s;
 }
 @keyframes blast {
@@ -225,8 +226,12 @@ ul{
 	text-align: center;
 }
 .button{
+  padding:.6rem 1rem;
 	display: block;
-	margin: auto;
+	margin:1rem  auto !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 #cat-1,#cat-2{
 	width:max-content;
