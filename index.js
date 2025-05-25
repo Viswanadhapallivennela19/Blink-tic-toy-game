@@ -10,182 +10,72 @@ const cat1Select = document.getElementById("category-1");
 const cat2Select = document.getElementById("category-2");
 const clickSound = document.getElementById("click-sound");
 const winSound = document.getElementById("win-sound");
-const dummy = document.getElementById("dummy");
+let unicEmoji=[]
 clickSound.volume = 0.5;
 winSound.volume = 0.8;
 let startTime = null;
 let endTime = null;
 let points = 0;
-
 const categoryEmojis = {
   Animal: [
-    "🐶",
-    "🐱",
-    "🦁",
-    "🐯",
-    "🐮",
-    "🐷",
-    "🐸",
-    "🐵",
-    "🐔",
-    "🐧",
-    "🐢",
-    "🐍",
-    "🦊",
-    "🦉",
-    "🐳",
+    "🐶", "🐱", "🦁", "🐯", "🐮",
+    "🐷", "🐸", "🐵", "🐔", "🐧",
+    "🐢", "🐍", "🦊", "🦉", "🐳"
   ],
+
   Food: [
-    "🍕",
-    "🍔",
-    "🍟",
-    "🌭",
-    "🍿",
-    "🥗",
-    "🍩",
-    "🍪",
-    "🍎",
-    "🍉",
-    "🍇",
-    "🍒",
-    "🍣",
-    "🍜",
-    "🍰",
+    "🍕", "🍔", "🍟", "🌭", "🍿",
+    "🥗", "🍩", "🍪", "🍎", "🍉",
+    "🍇", "🍒", "🍣", "🍜", "🍰"
   ],
+
   Sports: [
-    "⚽",
-    "🏀",
-    "🏈",
-    "⚾",
-    "🎾",
-    "🏐",
-    "🏉",
-    "🥊",
-    "🥋",
-    "🎽",
-    "🏓",
-    "🏸",
-    "⛳",
-    "🏹",
-    "🛹",
+    "⚽", "🏀", "🏈", "⚾", "🎾",
+    "🏐", "🏉", "🥊", "🥋", "🎽",
+    "🏓", "🏸", "⛳", "🏹", "🛹"
   ],
+
   Nature: [
-    "🌲",
-    "🌳",
-    "🌴",
-    "🌵",
-    "🌿",
-    "🍀",
-    "🌻",
-    "🌼",
-    "🌺",
-    "🌸",
-    "🌞",
-    "🌝",
-    "🌧️",
-    "⛰️",
-    "🌊",
+    "🌲", "🌳", "🌴", "🌵", "🌿",
+    "🍀", "🌻", "🌼", "🌺", "🌸",
+    "🌞", "🌝", "🌧️", "⛰️", "🌊"
   ],
+
   Music: [
-    "🎵",
-    "🎶",
-    "🎼",
-    "🎤",
-    "🎧",
-    "🎹",
-    "🥁",
-    "🎷",
-    "🎺",
-    "🎸",
-    "🪕",
-    "🪗",
-    "📻",
-    "🎚️",
-    "🎛️",
+    "🎵", "🎶", "🎼", "🎤", "🎧",
+    "🎹", "🥁", "🎷", "🎺", "🎸",
+    "🪕", "🪗", "📻", "🎚️", "🎛️"
   ],
+
   Faces: [
-    "😀",
-    "😁",
-    "😂",
-    "🤣",
-    "😅",
-    "😊",
-    "😍",
-    "😎",
-    "😡",
-    "😭",
-    "🤔",
-    "😴",
-    "🤩",
-    "😷",
-    "🥶",
+    "😀", "😁", "😂", "🤣", "😅",
+    "😊", "😍", "😎", "😡", "😭",
+    "🤔", "😴", "🤩", "😷", "🥶"
   ],
+
   AI: [
-    "🤖",
-    "🧠",
-    "👁️",
-    "🛠️",
-    "📡",
-    "🔬",
-    "💾",
-    "💡",
-    "🧬",
-    "⚙️",
-    "📊",
-    "🧑‍💻",
-    "📱",
+    "🤖", "🧠", "👁️", "🛠️", "📡",
+    "🔬", "💾", "💡", "🧬", "⚙️",
+    "📊", "🧑‍💻", "📱"
   ],
+
   Weather: [
-    "☀️",
-    "🌤️",
-    "⛅",
-    "🌥️",
-    "🌦️",
-    "🌧️",
-    "⛈️",
-    "🌩️",
-    "❄️",
-    "🌨️",
-    "🌪️",
-    "🌈",
-    "🌫️",
-    "💨",
-    "🌬️",
+    "☀️", "🌤️", "⛅", "🌥️", "🌦️",
+    "🌧️", "⛈️", "🌩️", "❄️", "🌨️",
+    "🌪️", "🌈", "🌫️", "💨", "🌬️"
   ],
+
   Space: [
-    "🌌",
-    "🌠",
-    "🌟",
-    "✨",
-    "🚀",
-    "🛸",
-    "🛰️",
-    "🌕",
-    "🌑",
-    "🪐",
-    "🌍",
-    "🌎",
-    "🌒",
-    "🪂",
-    "🌙",
+    "🌌", "🌠", "🌟", "✨", "🚀",
+    "🛸", "🛰️", "🌕", "🌑", "🪐",
+    "🌍", "🌎", "🌒", "🪂", "🌙"
   ],
+
   Places: [
-    "🏞️",
-    "🏝️",
-    "🏜️",
-    "🏖️",
-    "🏕️",
-    "🏔️",
-    "🏙️",
-    "🌆",
-    "🌇",
-    "🏛️",
-    "🗽",
-    "🗼",
-    "⛩️",
-    "🏯",
-    "🕌",
-  ],
+    "🏞️", "🏝️", "🏜️", "🏖️", "🏕️",
+    "🏔️", "🏙️", "🌆", "🌇", "🏛️",
+    "🗽", "🗼", "⛩️", "🏯", "🕌"
+  ]
 };
 let board = Array(9).fill(null);
 let currentPlayer = 1;
@@ -202,7 +92,8 @@ function handleClick(mode) {
 }
 function getRandomEmoji(category) {
   const emojis = categoryEmojis[category];
-  return emojis[Math.floor(Math.random() * emojis.length)];
+  return emojis[Math.ceil(Math.random()*(Math.floor(Math.random() * emojis.length)))];
+   
 }
 function checkStartCondition() {
   const cat1 = cat1Select.value;
@@ -308,10 +199,8 @@ function startGame() {
   player2Category = cat2Select.value;
   chooseCatg.classList.add("invisible");
   gameSection.classList.remove("invisible");
-  const brand = document.createElement("h1");
-  brand.style.fontSize = "2.5rem";
-  brand.innerHTML = `<span style="color:#16d4d8"><strong>Blink</strong></span> <span style='color:#222'><strong>Tic Toy</strong></span><br><h3 style="text-align:center">Game</h3>`;
-  dummy.append(brand);
+   
+   
   board = Array(9).fill(null);
   currentPlayer = 1;
   playerPositions[1] = [];
@@ -341,16 +230,10 @@ function endGame() {
   console.log(gameSection);
   gameSection.classList.add("invisible");
   resultSection.classList.remove("invisible");
-  const img = document.createElement("img");
-  const h3 = document.createElement("h3");
-  h3.innerHTML = "🎉 Congratulations! 🎉";
-  const p = document.createElement("p");
-  p.style.textAlign = "center";
-  img.src = "/assets/win.png";
-  img.classList.add("img-style");
-  p.innerHTML = `${gameInfo.textContent}<br><strong>Time Taken</strong>: ${durationInSeconds}s<br><strong>Points Earned</strong>: ${points}`;
   const resultInfo = document.getElementById("result-info");
-  resultInfo.append(img, h3, p);
+  resultInfo.innerHTML= `${gameInfo.textContent}<br><strong>Time Taken</strong>: ${durationInSeconds}s<br><strong>Points Earned</strong>: ${points}`;
+  
+   
 }
 function restartGame() {
   board = Array(9).fill(null);
@@ -370,11 +253,12 @@ function restartGame() {
   resultSection.classList.add("invisible");
   chooseCatg.classList.remove("invisible");
   restartBtn.style.display = "none";
-  startGameBtn.style.display = "inline-block";
+  startGameBtn.style.display = "block";
   gameInfo.textContent = "";
   gameBoardDiv.innerHTML = "";
 }
 restartBtn.addEventListener("click", () => {
+  
   restartGame();
 });
 startGameBtn.addEventListener("click", startGame);
