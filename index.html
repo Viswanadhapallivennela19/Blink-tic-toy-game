@@ -6,7 +6,7 @@
     <meta property="og:title" content="Blink Tac Toe" />
     <meta property="og:description" content="A fun twist on Tic Tac Toe with emojis, vanishing moves, and sound effects!" />
     <meta property="og:image" content="assets/icon.png" />
-    <meta property="og:url" content="" />
+    <meta property="og:url" content="https://viswanadhapallivennela19.github.io/Blink-tic-toy-game/" />
     <link rel="icon" href="assets/icon.png" type="image/x-icon" />
     <link rel="stylesheet" href="index.css" />
     <!-- Google Fonts -->
@@ -26,8 +26,9 @@
 
     <main class="main-section">
       <section class="main">
+         <h1 class="center"><span class="heading">Blink</span> Tac Toy Game</h1>
         <div class="choose-mode" id="choose-mode" data-aos="zoom-in">
-          <h1 class="center"><span class="heading">Blink</span> Tac Toy Game</h1>
+          
           <div id="game-rules" class="rules-modal hidden" data-aos="fade-up">
             <div class="rules-content">
               <div class="rule-flex">
@@ -98,11 +99,12 @@
             </select>
           </div>
           </div>
-          <button id="start-game-btn" disabled class="button">Start Game</button>
+          <button id="start-game-btn" disabled class="button" style="display: block;margin: 1rem auto;">Start Game</button>
         </div>
 
         <div class="game invisible" id="game">
-          <div id="dummy"></div>
+         
+           
           <div id="game-info">
           </div>
           <div id="game-board" class="game-board" ></div>
@@ -112,7 +114,11 @@
           
           <div class="result-style">
             <div class="card">
-          <div id="result-info"></div>
+              <img src="assets/win.png" class="img-style">
+              <h4>🎉 Congratulations! 🎉</h4>
+          <div id="result-info">
+
+          </div>
           <button id="restart-btn" style="display: none">Play Again</button>
           </div>
           </div>
@@ -128,7 +134,7 @@
 
     <script src="index.js"></script>
 
-    <!-- AOS Library Script -->
+    <!-- AOS -->
     <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
     <script>
       AOS.init();
